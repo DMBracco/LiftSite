@@ -9,5 +9,6 @@ namespace LiftSite.Domain.IRepository
         public bool EditBrand(Brand brand);
         public bool DeleteBrand(int id);
         IEnumerable<Brand> GetListBrand();
+        public Brand GetBrand(int id);
     }
 }

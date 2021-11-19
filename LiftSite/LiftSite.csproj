@@ -4,4 +4,9 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\LiftSite.DataAccess\LiftSite.DataAccess.csproj" />
+    <ProjectReference Include="..\LiftSite.Domain\LiftSite.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

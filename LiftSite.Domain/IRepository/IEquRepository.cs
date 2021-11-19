@@ -9,7 +9,7 @@ namespace LiftSite.Domain.IRepository
     {
         public bool CreateEquipment(Equipment data);
         public bool EditEquipment(Equipment data);
-        public bool DeleteIEquipment(int id);
+        public bool DeleteEquipment(int id);
         public IEnumerable<Equipment> GetListEquipment();
         public Equipment GetEquipment(int id);
     }

@@ -1,6 +1,12 @@
+using LiftSite.Controllers;
+using LiftSite.DataAccess;
+using LiftSite.DataAccess.Repository;
+using LiftSite.Domain.IRepository;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -23,7 +29,23 @@ namespace LiftSite
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
+            //services.AddDbContext<LiftSiteContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(options =>
+                {
+                    options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Account/Login");
+                    options.AccessDeniedPath = new Microsoft.AspNetCore.Http.PathString("/Account/Login");
+                });
+
+            services.AddControllersWithViews().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
+
+            services.AddTransient<IBrandRepository, BrandRepository>();
+            services.AddTransient<ITypeEquRepository, TypeEquRepository>();
+            services.AddTransient<IImageRepository, ImageRepository>();
+            services.AddTransient<IEquRepository, EquRepository>();
+            services.AddTransient<IUserRepository, UserRepository>();
+
+            services.AddScoped(_ => new LiftSiteContext(Configuration.GetConnectionString("DefaultConnection")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,6 +66,7 @@ namespace LiftSite
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

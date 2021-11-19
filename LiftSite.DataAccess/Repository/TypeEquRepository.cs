@@ -7,7 +7,7 @@ using System.Text;
 
 namespace LiftSite.DataAccess.Repository
 {
-    class TypeEquRepository : ITypeEquRepository
+    public class TypeEquRepository : ITypeEquRepository
     {
         private readonly LiftSiteContext context;
 

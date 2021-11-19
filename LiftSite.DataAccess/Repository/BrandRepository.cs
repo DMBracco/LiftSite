@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace LiftSite.DataAccess.Repository
 {
-    class BrandRepository : IBrandRepository
+    public class BrandRepository : IBrandRepository
     {
         private readonly LiftSiteContext context;
 
@@ -46,6 +46,11 @@ namespace LiftSite.DataAccess.Repository
             var data = context.Brands;
             var result = data.ToArray();
             return result;
+        }
+        public Brand GetBrand(int id)
+        {
+            var data = context.Brands.FirstOrDefault(p => p.Id == id);
+            return data;
         }
     }
 }
