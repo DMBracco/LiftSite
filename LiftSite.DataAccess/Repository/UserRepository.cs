@@ -56,6 +56,8 @@ namespace LiftSite.DataAccess.Repository
         {
             var result = context.Users
                 .FirstOrDefault(u => u.Email == data.Email && u.Password == data.Password);
+            result.Role = context.Roles.FirstOrDefault(p => p.Id == result.RoleId);
+
             return result;
         }
     }

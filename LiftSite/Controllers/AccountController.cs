@@ -1,5 +1,6 @@
 ﻿using LiftSite.Domain.Entities;
 using LiftSite.Domain.IRepository;
+using LiftSite.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
@@ -36,10 +37,11 @@ namespace LiftSite.Controllers
             if (ModelState.IsValid)
             {
                 User user = userRepository.LoginUser(model);
+
                 if (user != null)
                 {
                     await Authenticate(user);
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Admin");
                 }
                 ModelState.AddModelError("", "Некорректные логин и(или) пароль");
             }
