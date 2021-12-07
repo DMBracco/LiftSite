@@ -1,5 +1,6 @@
 ﻿using LiftSite.Domain.Entities;
 using LiftSite.Domain.IRepository;
+using LiftSite.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -18,10 +19,27 @@ namespace LiftSite.Controllers
 
             this.brandRepository = brandRepository;
         }
-        public IActionResult Index()
+        public ActionResult Index()
         {
-            return View(brandRepository.GetListBrand());
+            var Brands = brandRepository.GetListBrand();
+            var list = new List<BrandViewModel>();
+
+            foreach (var brand in Brands)
+            {
+                var item = new BrandViewModel
+                {
+                    Id = brand.Id,
+                    Name = brand.Name,
+                    Image = brand.Image,
+                    Number = brand.Number,
+                    Sorting = brand.Sorting,
+                };
+
+                list.Add(item);
+            }
+            return View(list);
         }
+
         public IActionResult Add()
         {
             return View("Edit");

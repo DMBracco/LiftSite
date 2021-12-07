@@ -1,0 +1,20 @@
+﻿@{
+    Layout = null;
+}
+<table data-page-list="[100]"
+       data-page-size="100"
+       data-pagination="true"
+       data-toggle="table"
+       data-url="@Url.RouteUrl(new {Controller="Brands", Action="Get"})"
+       id="tableBrands"
+       data-search="true">
+    <thead>
+        <tr>
+            <th data-field="Id">ID</th>
+            <th data-field="Name">Наименование</th>
+            <th data-field="Image">Изображение</th>
+            <th data-field="Number">Количество</th>
+            <th data-field="Sorting">Сортировка</th>
+        </tr>
+    </thead>
+</table>

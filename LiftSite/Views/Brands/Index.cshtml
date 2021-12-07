@@ -1,0 +1,71 @@
+﻿@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@model List<BrandViewModel>
+<!-- Page Heading -->
+<h1 class="h3 mb-2 text-gray-800">Бренды</h1>
+<p class="mb-4">
+    Таблица со всеми брендами
+</p>
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <button class="btn btn-danger font-weight-bold" id="addBrand" data-toggle="modal" data-target="#addBrandModal">Добавить</button>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Наименование</th>
+                        <th>Изображение</th>
+                        <th>Количество</th>
+                        <th>Сортировка</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>Наименование</th>
+                        <th>Изображение</th>
+                        <th>Количество</th>
+                        <th>Сортировка</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="pointerlink"><a id="brandsedit" data-id="@item.Id" class="pointerlink">@item.Name</a></td>
+                            <td>@item.Image</td>
+                            <td>@item.Number</td>
+                            <td>@item.Sorting</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Add Modal-->
+<div class="modal fade" id="addBrandModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Добавить Бренд</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Отмена</button>
+                <a class="btn btn-danger">Добавить</a>
+            </div>
+        </div>
+    </div>
+</div>

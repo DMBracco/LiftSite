@@ -41,6 +41,7 @@ namespace LiftSite.Controllers
                 if (user != null)
                 {
                     await Authenticate(user);
+
                     return RedirectToAction("Index", "Admin");
                 }
                 ModelState.AddModelError("", "Некорректные логин и(или) пароль");
