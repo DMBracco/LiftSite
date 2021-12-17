@@ -12,7 +12,7 @@ namespace LiftSite.Domain.Entities
         public string Name { get; set; }
 
         [Display(Name = "Производитель")]
-        public int BrandId { get; set; }
+        public int? BrandId { get; set; }
         public Brand Brand { get; set; }
 
         [Display(Name = "Модель")]

@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace LiftSite.DataAccess.Repository
 {
@@ -18,9 +19,18 @@ namespace LiftSite.DataAccess.Repository
             this.context = context;
         }
 
-        public bool CreateImage(Image data)
+        public bool CreateImage(Image file)
         {
-            context.Images.Add(data);
+            context.Images.Add(file);
+            context.SaveChanges();
+            return true;
+        }
+        public bool CreateImagesForeach(List<Image> data)
+        {
+            foreach(var item in data)
+            {
+                context.Images.Add(item);
+            }
             context.SaveChanges();
             return true;
         }
@@ -41,6 +51,20 @@ namespace LiftSite.DataAccess.Repository
             }
             return false;
         }
+        public bool DeleteImageByBrand(int brandId)
+        {
+            var imageByBrand = context.Images.Where(p => p.BrandId == brandId);
+            if (imageByBrand != null)
+            {
+                foreach(var item in imageByBrand)
+                {
+                    context.Images.Remove(item);
+                }
+                context.SaveChanges();
+                return true;
+            }
+            return false;
+        }
         public IEnumerable<Image> GetListImage()
         {
             var data = context.Images;
@@ -50,6 +74,12 @@ namespace LiftSite.DataAccess.Repository
         public Image GetImage(int id)
         {
             var data = context.Images.FirstOrDefault(p => p.Id == id);
+            return data;
+        }
+
+        public Image GetImageByGuid(string guid)
+        {
+            var data = context.Images.FirstOrDefault(p => p.Guid == guid);
             return data;
         }
     }

@@ -4,14 +4,16 @@ using LiftSite.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace LiftSite.DataAccess.Migrations
 {
     [DbContext(typeof(LiftSiteContext))]
-    partial class LiftSiteContextModelSnapshot : ModelSnapshot
+    [Migration("20211209104142_m1")]
+    partial class m1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -26,6 +28,9 @@ namespace LiftSite.DataAccess.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("ImageId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
@@ -38,6 +43,8 @@ namespace LiftSite.DataAccess.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ImageId");
+
                     b.ToTable("Brands");
                 });
 
@@ -48,7 +55,7 @@ namespace LiftSite.DataAccess.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("BrandId")
+                    b.Property<int>("BrandId")
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
@@ -83,17 +90,8 @@ namespace LiftSite.DataAccess.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("BrandId")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("Deleted")
-                        .HasColumnType("bit");
-
                     b.Property<int?>("EquipmentId")
                         .HasColumnType("int");
-
-                    b.Property<string>("Guid")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -102,10 +100,6 @@ namespace LiftSite.DataAccess.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("BrandId")
-                        .IsUnique()
-                        .HasFilter("[BrandId] IS NOT NULL");
 
                     b.HasIndex("EquipmentId");
 
@@ -125,18 +119,6 @@ namespace LiftSite.DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Roles");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "admin"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "user"
-                        });
                 });
 
             modelBuilder.Entity("LiftSite.Domain.Entities.TypeEquipment", b =>
@@ -176,22 +158,26 @@ namespace LiftSite.DataAccess.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("Users");
+                });
 
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Email = "admin@mail.com",
-                            Password = "123456",
-                            RoleId = 1
-                        });
+            modelBuilder.Entity("LiftSite.Domain.Entities.Brand", b =>
+                {
+                    b.HasOne("LiftSite.Domain.Entities.Image", "Image")
+                        .WithMany()
+                        .HasForeignKey("ImageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Image");
                 });
 
             modelBuilder.Entity("LiftSite.Domain.Entities.Equipment", b =>
                 {
                     b.HasOne("LiftSite.Domain.Entities.Brand", "Brand")
                         .WithMany()
-                        .HasForeignKey("BrandId");
+                        .HasForeignKey("BrandId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("LiftSite.Domain.Entities.TypeEquipment", "TypeEquipment")
                         .WithMany()
@@ -204,15 +190,9 @@ namespace LiftSite.DataAccess.Migrations
 
             modelBuilder.Entity("LiftSite.Domain.Entities.Image", b =>
                 {
-                    b.HasOne("LiftSite.Domain.Entities.Brand", "Brand")
-                        .WithOne("ImageId")
-                        .HasForeignKey("LiftSite.Domain.Entities.Image", "BrandId");
-
                     b.HasOne("LiftSite.Domain.Entities.Equipment", null)
                         .WithMany("Images")
                         .HasForeignKey("EquipmentId");
-
-                    b.Navigation("Brand");
                 });
 
             modelBuilder.Entity("LiftSite.Domain.Entities.User", b =>
@@ -222,11 +202,6 @@ namespace LiftSite.DataAccess.Migrations
                         .HasForeignKey("RoleId");
 
                     b.Navigation("Role");
-                });
-
-            modelBuilder.Entity("LiftSite.Domain.Entities.Brand", b =>
-                {
-                    b.Navigation("ImageId");
                 });
 
             modelBuilder.Entity("LiftSite.Domain.Entities.Equipment", b =>

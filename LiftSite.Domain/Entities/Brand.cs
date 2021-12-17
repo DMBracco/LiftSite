@@ -11,7 +11,7 @@ namespace LiftSite.Domain.Entities
         public string Name { get; set; }
 
         [Display(Name = "Изображение")]
-        public string Image { get; set; }
+        public Image ImageId { get; set; }
 
         [Display(Name = "Количество")]
         public int Number { get; set; }

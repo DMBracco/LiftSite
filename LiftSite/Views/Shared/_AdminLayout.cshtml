@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>LiftPribor</title>
+    <title>@ViewData["Title"]</title>
 
     <!-- Custom fonts for this template-->
     <link href="~/lib/fontawesome-free/all.min.css" rel="stylesheet" />
@@ -20,6 +20,10 @@
     <link href="~/lib/startbootstrap-sb-admin-2/css/sb-admin-2.min.css" rel="stylesheet" />
     <!-- Custom styles for this page -->
     <link href="~/lib/datatables/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+    <!-- filepond styles for this page -->
+    @*<link href="~/lib/filepond/filepond.min.css" rel="stylesheet" />
+    <link href="~/lib/filepond-plugin-image-edit/filepond-plugin-image-edit.min.css" rel="stylesheet" />
+    <link href="~/lib/filepond-plugin-image-preview/filepond-plugin-image-preview.min.css" rel="stylesheet" />*@
 
     <link href="~/css/site.css" rel="stylesheet" />
 
@@ -253,10 +257,18 @@
     <!-- Custom scripts for all pages-->
     <script src="~/lib/startbootstrap-sb-admin-2/js/sb-admin-2.min.js"></script>
 
-    <!-- Page level plugins -->
-    <script src="~/lib/datatables/js/jquery.dataTables.min.js"></script>
-    <script src="~/lib/datatables/js/dataTables.bootstrap4.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
 
+    <!-- Page level plugins -->
+    <!--<script src="~/lib/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="~/lib/datatables/js/dataTables.bootstrap4.min.js"></script>-->
+    <!-- filepond styles for this page -->
+    <!--<script src="~/lib/filepond/filepond.min.js"></script>
+    <script src="~/lib/filepond-plugin-image-edit/filepond-plugin-image-edit.min.js"></script>
+    <script src="~/lib/filepond-plugin-image-preview/filepond-plugin-image-preview.min.js"></script>
+    <script src="~/lib/filepond-plugin-file-validate-size/filepond-plugin-file-validate-size.min.js"></script>-->
+
+    @RenderSection("Scripts", required: false)
 </body>
 
 </html>
