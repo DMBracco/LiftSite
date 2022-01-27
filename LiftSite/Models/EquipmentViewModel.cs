@@ -1,9 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using LiftSite.Domain.Entities;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace LiftSite.Domain.Entities
+namespace LiftSite.Models
 {
-    public class Equipment
+    public class EquipmentViewModel
     {
         public int Id { get; set; }
 
@@ -12,7 +16,6 @@ namespace LiftSite.Domain.Entities
         public string Name { get; set; }
 
         [Display(Name = "Производитель")]
-        public int? BrandId { get; set; }
         public Brand Brand { get; set; }
 
         [Display(Name = "Модель")]
@@ -22,10 +25,9 @@ namespace LiftSite.Domain.Entities
         public string Description { get; set; }
 
         [Display(Name = "Изображение")]
-        public List<Image> Images { get; set; }
+        public List<Image> ListImages { get; set; }
 
         [Display(Name = "Тип оборудования")]
-        public int? TypeId { get; set; }
         public TypeEquipment TypeEquipment { get; set; }
     }
 }

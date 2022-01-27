@@ -67,3 +67,73 @@ btnBrandImg.addEventListener('change', function () {
     var that = this;
     addBrandImg(that, that.dataset.brand);
 });
+
+//const ApiUrl = "/brands/";
+//const inputElement = document.querySelector('input[type="file"]');
+//debugger
+
+//function process(fieldName, file, metadata, load, error, progress, abort) {
+//    const formData = new FormData();
+//    formData.append(fieldName, file, file.name);
+//    formData.append("brandId", "@Model.Id");
+//    const request = new XMLHttpRequest();
+//    request.open('POST', api);
+//    // Setting computable to false switches the loading indicator to infinite mode
+//    request.upload.onprogress = (e) => {
+//        progress(e.lengthComputable, e.loaded, e.total);
+//    };
+//    request.onload = function () {
+//        if (request.status >= 200 && request.status < 300) {
+//            load(request.responseText);// the load method accepts either a string (id) or an object
+//        }
+//        else {
+//            error('Error during Upload!');
+//        }
+//    };
+//    request.send(formData);
+//    //expose an abort method so the request can be cancelled
+//    return {
+//        abort: () => {
+//            // This function is entered if the user has tapped the cancel button
+//            request.abort();
+//            // Let FilePond know the request has been cancelled
+//            abort();
+//        }
+//    };
+//}
+
+//function remove(source, load, error) {
+//    const request = new XMLHttpRequest();
+//    request.open('DELETE', api);
+//    // Setting computable to false switches the loading indicator to infinite mode
+//    request.upload.onprogress = (e) => {
+//        progress(e.lengthComputable, e.loaded, e.total);
+//    };
+//    request.onload = function () {
+//        if (request.status >= 200 && request.status < 300) {
+//            load();// the load method accepts either a string (id) or an object
+//        }
+//        else {
+//            error('Error while removing file!');
+//        }
+//    }
+//    request.send(source);
+//}
+
+//const pond = FilePond.create(inputElement, {
+//    server: {
+//        url: ApiUrl,
+//        process: process,
+//        load: "/load",
+//        fetch: null,
+//        remove: remove,
+//    },
+//    //files: [
+//    //    {
+//    //        source: "@Model.ImageId.Guid",
+//    //        options: {
+//    //            type: 'local', // set type to local to indicate an already uploaded file, so it hits the load endpoint
+//    //        }
+//    //    },
+//    //],
+//});

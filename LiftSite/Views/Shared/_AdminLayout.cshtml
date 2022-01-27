@@ -23,7 +23,8 @@
     <!-- filepond styles for this page -->
     @*<link href="~/lib/filepond/filepond.min.css" rel="stylesheet" />
     <link href="~/lib/filepond-plugin-image-edit/filepond-plugin-image-edit.min.css" rel="stylesheet" />
-    <link href="~/lib/filepond-plugin-image-preview/filepond-plugin-image-preview.min.css" rel="stylesheet" />*@
+    <link href="~/lib/filepond-plugin-image-preview/filepond-plugin-image-preview.min.css" rel="stylesheet" />
+    <link href="https://unpkg.com/filepond-plugin-file-poster/dist/filepond-plugin-file-poster.css" rel="stylesheet">*@
 
     <link href="~/css/site.css" rel="stylesheet" />
 
@@ -53,6 +54,12 @@
                 <a class="nav-link" asp-controller="Brands" asp-action="Index">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Бренды</span>
+                </a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" asp-controller="TypeEquipment" asp-action="Index">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Типы оборудования</span>
                 </a>
             </li>
 
@@ -263,10 +270,13 @@
     <!--<script src="~/lib/datatables/js/jquery.dataTables.min.js"></script>
     <script src="~/lib/datatables/js/dataTables.bootstrap4.min.js"></script>-->
     <!-- filepond styles for this page -->
-    <!--<script src="~/lib/filepond/filepond.min.js"></script>
+    @*<script src="https://unpkg.com/filepond-plugin-file-encode/dist/filepond-plugin-file-encode.min.js"></script>
+    <script src="https://unpkg.com/filepond-plugin-image-exif-orientation/dist/filepond-plugin-image-exif-orientation.min.js"></script>
+
     <script src="~/lib/filepond-plugin-image-edit/filepond-plugin-image-edit.min.js"></script>
     <script src="~/lib/filepond-plugin-image-preview/filepond-plugin-image-preview.min.js"></script>
-    <script src="~/lib/filepond-plugin-file-validate-size/filepond-plugin-file-validate-size.min.js"></script>-->
+    <script src="~/lib/filepond-plugin-file-validate-size/filepond-plugin-file-validate-size.min.js"></script>
+    <script src="~/lib/filepond/filepond.min.js"></script>*@
 
     @RenderSection("Scripts", required: false)
 </body>

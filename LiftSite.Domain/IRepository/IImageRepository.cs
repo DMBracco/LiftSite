@@ -9,6 +9,7 @@ namespace LiftSite.Domain.IRepository
     public interface IImageRepository
     {
         public bool CreateImage(Image data);
+        public bool CreateImageAsync(Image data);
         public bool CreateImagesForeach(List<Image> data);
         public bool EditImage(Image data);
         public bool DeleteImage(int id);
@@ -16,5 +17,6 @@ namespace LiftSite.Domain.IRepository
         public IEnumerable<Image> GetListImage();
         public Image GetImage(int id);
         public Image GetImageByGuid(string guid);
+        public Image GetImageByBrandId(int brandId);
     }
 }

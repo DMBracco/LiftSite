@@ -24,7 +24,7 @@ namespace LiftSite.DataAccess.Repository
             context.SaveChanges();
             return true;
         }
-        public bool EditBrand(Brand brand)
+        public bool UpdateBrand(Brand brand)
         {
             context.Brands.Update(brand);
             context.SaveChanges();
@@ -43,14 +43,40 @@ namespace LiftSite.DataAccess.Repository
         }
         public IEnumerable<Brand> GetListBrand()
         {
-            var data = context.Brands;
+            var data = from b in context.Brands
+                              join i in context.Images
+                              on b.Id equals i.BrandId
+                              into BrandImagesGroup
+                              from brandImg in BrandImagesGroup.DefaultIfEmpty()
+                              select new Brand{
+                                  Id = b.Id,
+                                  Name = b.Name,
+                                  BrandImage = brandImg,
+                                  Number = b.Number,
+                                  Sorting = b.Sorting,
+                              };
+
             var result = data.ToArray();
             return result;
         }
         public Brand GetBrand(int id)
         {
-            var data = context.Brands.FirstOrDefault(p => p.Id == id);
-            return data;
+            var result = (from b in context.Brands
+                             join i in context.Images
+                             on b.Id equals i.BrandId
+                             into BrandImagesGroup
+                             from brandImg in BrandImagesGroup.DefaultIfEmpty()
+                             where b.Id == id
+                              select new Brand
+                             {  
+                                 Id = b.Id,
+                                 Name = b.Name,
+                                 BrandImage = brandImg,
+                                 Number = b.Number,
+                                 Sorting = b.Sorting,
+                             }).FirstOrDefault(); // результат
+
+            return result;
         }
     }
 }

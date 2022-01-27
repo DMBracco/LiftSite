@@ -4,14 +4,16 @@ using LiftSite.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace LiftSite.DataAccess.Migrations
 {
     [DbContext(typeof(LiftSiteContext))]
-    partial class LiftSiteContextModelSnapshot : ModelSnapshot
+    [Migration("20220119084155_New1")]
+    partial class New1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -86,14 +88,14 @@ namespace LiftSite.DataAccess.Migrations
                     b.Property<int?>("BrandId")
                         .HasColumnType("int");
 
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("bit");
+
                     b.Property<int?>("EquipmentId")
                         .HasColumnType("int");
 
                     b.Property<string>("Guid")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");

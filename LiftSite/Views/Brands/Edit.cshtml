@@ -31,15 +31,16 @@
                     <span asp-validation-for="Name" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="ImagePath" class="control-label"></label>
+                    @*<input asp-for="ImageId.Guid" hidden />*@
+                    <label asp-for="BrandImage" class="control-label"></label>
                     @*<input type="file"
-                           id="brandImg"
                            class="filepond"
-                           name="filepond"
+                           id="filepond"
+                           name="files"
                            multiple>*@
 
                     <input id="uploadedImg" class="form-control" type="file" name="uploadedImg" accept="image" data-brand="@Model?.Id" />
-                    <p><img src="@Model?.ImagePath"></p>
+                    <p><img class="img-size-100px" src="@Model.BrandImage?.Path"></p>
                 </div>
                 <div class="form-group">
                     <label asp-for="Number" class="control-label"></label>
@@ -85,4 +86,7 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
     <script src="~/js/brand-edit.js"></script>
+    <script>
+
+    </script>
 }

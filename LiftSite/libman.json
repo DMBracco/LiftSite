@@ -22,8 +22,8 @@
       "destination": "wwwroot/lib/datatables/"
     },
     {
-      "library": "filepond@4.30.3",
-      "destination": "wwwroot/lib/filepond/"
+      "library": "dropzone@5.9.3",
+      "destination": "wwwroot/lib/dropzone/"
     }
   ]
 }

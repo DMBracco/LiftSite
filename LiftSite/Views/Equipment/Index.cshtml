@@ -1,0 +1,45 @@
+﻿@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!-- Page Heading -->
+<h1 class="h3 mb-2 text-gray-800">Оборудование</h1>
+<p class="mb-4">
+    Таблица со всеми оборудованиями
+</p>
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <a id="btnAdd" class="btn btn-danger font-weight-bold" href="#" @*data-toggle="modal" data-target="#workingModal"*@>Добавить</a>
+    </div>
+    <div id="getTable" class="card-body">
+        <!-- js Ajax-->
+    </div>
+</div>
+<!-- Logout Modal-->
+<div class="modal fade" id="workingModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="workingModalTitle"></h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div id="getModal" class="modal-body">
+                <!-- js Ajax-->
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Отменить</button>
+                <button id="btnSave" type="button" class="btn btn-primary">Сохранить</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="~/js/typeEquipment.js"></script>
+}

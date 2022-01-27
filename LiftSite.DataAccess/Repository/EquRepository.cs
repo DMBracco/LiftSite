@@ -24,7 +24,7 @@ namespace LiftSite.DataAccess.Repository
             context.SaveChanges();
             return true;
         }
-        public bool EditEquipment(Equipment data)
+        public bool UpdateEquipment(Equipment data)
         {
             context.Equipments.Update(data);
             context.SaveChanges();
@@ -49,7 +49,22 @@ namespace LiftSite.DataAccess.Repository
         }
         public Equipment GetEquipment(int id)
         {
-            var data = context.Equipments.FirstOrDefault(p => p.Id == id);
+            var data = (from e in context.Equipments
+                        join b in context.Brands on e.BrandId equals b.Id into BrandGroup
+                        from brand in BrandGroup.DefaultIfEmpty()
+                        join t in context.TypeEquipments on e.TypeId equals t.Id into TypeGroup
+                        from type in TypeGroup.DefaultIfEmpty()
+                        where e.Id == id
+                        select new Equipment
+                        {
+                            Id = e.Id,
+                            Name = e.Name,
+                            Brand = brand,
+                            Model = e.Model,
+                            Description = e.Description,
+                            Images = e.Images,
+                            TypeEquipment = type
+                        }).FirstOrDefault();
             return data;
         }
     }

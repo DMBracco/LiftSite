@@ -3,3 +3,12 @@
     cursor: pointer;
 }
 
+img {
+    display: block;
+    height: auto;
+    max-width: 100%;
+}
+
+.img-size-100px {
+    height: 100px;
+}

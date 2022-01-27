@@ -16,6 +16,6 @@ namespace LiftSite.Domain.Entities
         public Brand Brand { get; set; }
 
         public string Guid { get; set; }
-        public bool Deleted { get; set; }
+        public bool IsDeleted { get; set; }
     }
 }

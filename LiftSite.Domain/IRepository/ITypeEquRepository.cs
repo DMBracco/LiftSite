@@ -7,9 +7,10 @@ namespace LiftSite.Domain.IRepository
 {
     public interface ITypeEquRepository
     {
-        public bool CreateTypeEqu(TypeEquipment brand);
-        public bool EditTypeEqu(TypeEquipment brand);
+        public bool CreateTypeEqu(TypeEquipment typeEq);
+        public bool UpdateTypeEqu(TypeEquipment typeEq);
         public bool DeleteTypeEqu(int id);
         IEnumerable<TypeEquipment> GetListTypeEqu();
+        TypeEquipment GetTypeEqu(int id);
     }
 }

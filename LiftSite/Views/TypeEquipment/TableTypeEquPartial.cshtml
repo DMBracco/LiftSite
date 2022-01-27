@@ -1,0 +1,32 @@
+﻿@model List<TypeEquViewModel>
+
+<div class="table-responsive">
+    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+            <tr>
+                <th>Номер</th>
+                <th>Наименование</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>Номер</th>
+                <th>Наименование</th>
+                <th></th>
+            </tr>
+        </tfoot>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Name</td>
+                    <td>
+                        <button class="btn btn-secondary font-weight-bold btnUpdate" data-id="@item.Id">Изменить</button>
+                        <button class="btn btn-danger font-weight-bold btnDelete" data-id="@item.Id">Удалить</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -54,9 +54,20 @@ namespace LiftSite.DataAccess.Repository
         }
         public User LoginUser(User data)
         {
-            var result = context.Users
-                .FirstOrDefault(u => u.Email == data.Email && u.Password == data.Password);
-            result.Role = context.Roles.FirstOrDefault(p => p.Id == result.RoleId);
+            //var result = context.Users
+            //    .FirstOrDefault(u => u.Email == data.Email && u.Password == data.Password);
+            //result.Role = context.Roles.FirstOrDefault(p => p.Id == result.RoleId);
+
+            var result = (from u in context.Users
+                          join r in context.Roles
+                          on u.RoleId equals r.Id
+                          where u.Email == data.Email && u.Password == data.Password
+                          select new User {
+                              Id = u.Id,
+                              Email = u.Email,
+                              RoleId = u.RoleId,
+                              Role = r
+                          }).FirstOrDefault();
 
             return result;
         }

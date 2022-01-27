@@ -4,14 +4,16 @@ using LiftSite.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace LiftSite.DataAccess.Migrations
 {
     [DbContext(typeof(LiftSiteContext))]
-    partial class LiftSiteContextModelSnapshot : ModelSnapshot
+    [Migration("20220119081003_a1")]
+    partial class a1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -86,14 +88,14 @@ namespace LiftSite.DataAccess.Migrations
                     b.Property<int?>("BrandId")
                         .HasColumnType("int");
 
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("bit");
+
                     b.Property<int?>("EquipmentId")
                         .HasColumnType("int");
 
                     b.Property<string>("Guid")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -205,7 +207,7 @@ namespace LiftSite.DataAccess.Migrations
             modelBuilder.Entity("LiftSite.Domain.Entities.Image", b =>
                 {
                     b.HasOne("LiftSite.Domain.Entities.Brand", "Brand")
-                        .WithOne("BrandImage")
+                        .WithOne("ImageId")
                         .HasForeignKey("LiftSite.Domain.Entities.Image", "BrandId");
 
                     b.HasOne("LiftSite.Domain.Entities.Equipment", null)
@@ -226,7 +228,7 @@ namespace LiftSite.DataAccess.Migrations
 
             modelBuilder.Entity("LiftSite.Domain.Entities.Brand", b =>
                 {
-                    b.Navigation("BrandImage");
+                    b.Navigation("ImageId");
                 });
 
             modelBuilder.Entity("LiftSite.Domain.Entities.Equipment", b =>

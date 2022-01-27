@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using LiftSite.Domain.Entities;
+using Microsoft.AspNetCore.Http;
 using System.ComponentModel.DataAnnotations;
 
 namespace LiftSite.Models
@@ -13,14 +14,12 @@ namespace LiftSite.Models
         public string Name { get; set; }
 
         [Display(Name = "Изображение")]
-        public string ImagePath { get; set; }
+        public Image BrandImage { get; set; }
 
         [Display(Name = "Количество")]
         public int Number { get; set; }
 
         [Display(Name = "Сортировка")]
         public int Sorting { get; set; }
-
-        public IFormFile uploadedImg { get; set; }
     }
 }

@@ -24,7 +24,7 @@ namespace LiftSite.DataAccess.Repository
             context.SaveChanges();
             return true;
         }
-        public bool EditTypeEqu(TypeEquipment data)
+        public bool UpdateTypeEqu(TypeEquipment data)
         {
             context.TypeEquipments.Update(data);
             context.SaveChanges();
@@ -46,6 +46,11 @@ namespace LiftSite.DataAccess.Repository
             var data = context.TypeEquipments;
             var result = data.ToArray();
             return result;
+        }
+        public TypeEquipment GetTypeEqu(int id)
+        {
+            var data = context.TypeEquipments.FirstOrDefault(s => s.Id == id);
+            return data;
         }
     }
 }

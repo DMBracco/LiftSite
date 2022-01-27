@@ -37,7 +37,9 @@
                     {
                         <tr>
                             <td><a id="brandsedit" class="pointerlink" asp-action="Edit" asp-route-id=@item.Id>@item.Name</a></td>
-                            <td>@item.ImagePath</td>
+                            <td>
+                                <img src="@item.BrandImage?.Path" class="img-size-100px" alt="@item.BrandImage?.Name">
+                            </td>
                             <td>@item.Number</td>
                             <td>@item.Sorting</td>
                         </tr>

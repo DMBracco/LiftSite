@@ -25,6 +25,12 @@ namespace LiftSite.DataAccess.Repository
             context.SaveChanges();
             return true;
         }
+        public bool CreateImageAsync(Image file)
+        {
+            context.Images.AddAsync(file);
+            context.SaveChangesAsync();
+            return true;
+        }
         public bool CreateImagesForeach(List<Image> data)
         {
             foreach(var item in data)
@@ -80,6 +86,12 @@ namespace LiftSite.DataAccess.Repository
         public Image GetImageByGuid(string guid)
         {
             var data = context.Images.FirstOrDefault(p => p.Guid == guid);
+            return data;
+        }
+
+        public Image GetImageByBrandId(int brandId)
+        {
+            var data = context.Images.FirstOrDefault(p => p.BrandId == brandId);
             return data;
         }
     }

@@ -8,7 +8,7 @@ namespace LiftSite.Domain.IRepository
     public interface IEquRepository
     {
         public bool CreateEquipment(Equipment data);
-        public bool EditEquipment(Equipment data);
+        public bool UpdateEquipment(Equipment data);
         public bool DeleteEquipment(int id);
         public IEnumerable<Equipment> GetListEquipment();
         public Equipment GetEquipment(int id);
