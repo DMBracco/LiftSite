@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace LiftSite.Controllers
 {
-    public class BaseController : Controller
+    public class HomeController : Controller
     {
-        private readonly ILogger<BaseController> _logger;
+        private readonly ILogger<HomeController> _logger;
 
-        public BaseController(ILogger<BaseController> logger)
+        public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
         }

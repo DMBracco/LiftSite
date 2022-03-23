@@ -94,5 +94,10 @@ namespace LiftSite.DataAccess.Repository
             var data = context.Images.FirstOrDefault(p => p.BrandId == brandId);
             return data;
         }
+        public Image GetImageByEquipmentId(int id)
+        {
+            var data = context.Images.FirstOrDefault(p => p.EquipmentId == id);
+            return data;
+        }
     }
 }

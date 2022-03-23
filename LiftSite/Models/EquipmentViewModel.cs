@@ -1,4 +1,5 @@
 ﻿using LiftSite.Domain.Entities;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -16,7 +17,7 @@ namespace LiftSite.Models
         public string Name { get; set; }
 
         [Display(Name = "Производитель")]
-        public Brand Brand { get; set; }
+        public int? BrandId { get; set; }
 
         [Display(Name = "Модель")]
         public string Model { get; set; }
@@ -25,9 +26,9 @@ namespace LiftSite.Models
         public string Description { get; set; }
 
         [Display(Name = "Изображение")]
-        public List<Image> ListImages { get; set; }
+        public IFormFile Images { get; set; }
 
         [Display(Name = "Тип оборудования")]
-        public TypeEquipment TypeEquipment { get; set; }
+        public int? TypeId { get; set; }
     }
 }

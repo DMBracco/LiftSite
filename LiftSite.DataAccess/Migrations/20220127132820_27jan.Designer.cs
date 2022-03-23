@@ -4,14 +4,16 @@ using LiftSite.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace LiftSite.DataAccess.Migrations
 {
     [DbContext(typeof(LiftSiteContext))]
-    partial class LiftSiteContextModelSnapshot : ModelSnapshot
+    [Migration("20220127132820_27jan")]
+    partial class _27jan
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -208,13 +210,11 @@ namespace LiftSite.DataAccess.Migrations
                         .WithOne("BrandImage")
                         .HasForeignKey("LiftSite.Domain.Entities.Image", "BrandId");
 
-                    b.HasOne("LiftSite.Domain.Entities.Equipment", "Equipment")
+                    b.HasOne("LiftSite.Domain.Entities.Equipment", null)
                         .WithMany("Images")
                         .HasForeignKey("EquipmentId");
 
                     b.Navigation("Brand");
-
-                    b.Navigation("Equipment");
                 });
 
             modelBuilder.Entity("LiftSite.Domain.Entities.User", b =>

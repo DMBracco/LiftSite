@@ -43,7 +43,21 @@ namespace LiftSite.DataAccess.Repository
         }
         public IEnumerable<Equipment> GetListEquipment()
         {
-            var data = context.Equipments;
+            var data = from e in context.Equipments
+                       join b in context.Brands on e.BrandId equals b.Id into BrandGroup
+                       from brand in BrandGroup.DefaultIfEmpty()
+                       join t in context.TypeEquipments on e.TypeId equals t.Id into TypeGroup
+                       from type in TypeGroup.DefaultIfEmpty()
+                       select new Equipment
+                       {
+                           Id = e.Id,
+                           Name = e.Name,
+                           Brand = brand,
+                           Model = e.Model,
+                           Description = e.Description,
+                           Images = e.Images,
+                           TypeEquipment = type
+                       };
             var result = data.ToArray();
             return result;
         }

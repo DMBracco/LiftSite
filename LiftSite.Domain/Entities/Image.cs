@@ -15,6 +15,9 @@ namespace LiftSite.Domain.Entities
         public int? BrandId { get; set; }
         public Brand Brand { get; set; }
 
+        public int? EquipmentId { get; set; }
+        public Equipment Equipment { get; set; }
+
         public string Guid { get; set; }
         public bool IsDeleted { get; set; }
     }

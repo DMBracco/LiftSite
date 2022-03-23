@@ -18,5 +18,6 @@ namespace LiftSite.Domain.IRepository
         public Image GetImage(int id);
         public Image GetImageByGuid(string guid);
         public Image GetImageByBrandId(int brandId);
+        public Image GetImageByEquipmentId(int equipmentId);
     }
 }
